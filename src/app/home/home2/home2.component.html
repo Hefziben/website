@@ -1,0 +1,63 @@
+
+<div class="container-fluid">
+
+        <div *ngIf="subCategories" class="row" style="margin-bottom: 0px">
+            <div class="col-sm-12 mt-2 text-center card_plate">
+                <h5 style="margin-top: 2px">Displaying <strong>1</strong> to <strong>{{subCategories.length}}</strong> (of <strong>{{subCategories.length}}</strong> products)</h5>
+                <!-- <pagination-controls 
+                (pageChange)="currentPage = $event; onPageChange(currentPage)" 
+                class="pagination-product">
+            </pagination-controls> -->
+            <!-- <nav aria-label="Page navigation example text-center"> -->
+                <ul *ngIf="pages.length > 1" class="pagination m-0">
+                  <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+                  <li *ngFor="let page of pages" class="page-item"><a class="page-link" [ngClass]="currentPage == page? 'select' : ''" (click)="changePage(page)">{{ page + 1 }}</a></li>
+                  <!-- <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+                  <!-- <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                  <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                </ul>
+              <!-- </nav> -->
+            </div>
+        </div> 
+    
+        <div class="row">
+    
+            <ng-container *ngIf="!subCategories">
+                    <div class="col-12 text-center">
+                            <img width="14%" src="/assets/images/loader.svg" alt="">
+                            <h6>loading...</h6>
+                        </div>
+            </ng-container>
+            
+            <ng-container *ngIf="subCategories">
+                    <div *ngFor="let item of subCategories" class="col-sm-4">
+                            <div class="card text-center">
+                                <div class="card-img">
+                                        <img class="card-img-top" width="50%" src="{{imgUrl}}{{item.products_image}}" alt="{{item.products_name}}" (click)="getProduct(item)">
+                                </div>
+                                    
+                                    <div class="card-body">
+                                        <!-- <a class="shop_now_btn" href="javascript:void(0)"><img src="assets/images/shop_now_button.png"  width="250" alt="Shop Now"></a> -->
+                                        <div class="div-txt">
+                                                <h5 style="font-size: 18px;width: 98%;margin: auto;color: #000" class="card-title" (click)="getProduct(item)">{{ (item.products_name.length > 70) ? (item.products_name | slice:0:69)+' ...':(item.products_name) }}</h5>
+                                        </div>
+                                        
+
+                                        <!-- <h4 class="text-danger">$100.00 $80.00 Save: 15% off</h4> -->
+                                            <div class="well">
+                                        <h3 class="text-danger"> <span class="old_price">${{item.products_price | number : '1.2-2'}}&nbsp;</span> &nbsp;${{item.old_price | number : '1.2-2'}}&nbsp; Save: {{ ((item.products_price  - item.old_price) * 100)/item.products_price }}%  off</h3>
+                                                    <a href="javascript:void(0)"><img (click)="getProduct(item)" src="assets/images/buy.png" alt="">  </a>
+                                            </div>
+                                      
+                                      
+                                    </div>
+                                  </div>
+                    </div>
+            </ng-container>
+           
+        </div>
+    
+    </div> <!-- container-fluid -->
+
+
+

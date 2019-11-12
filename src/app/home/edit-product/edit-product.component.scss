@@ -1,0 +1,503 @@
+/*
+Import
+=========================== */
+@import '../../../assets/sass/css3-mixins';
+@import '../../../assets/sass/variable';
+// @import 'https://www.licenseplates.tv/includes/templates/mars/css/stylesheet.css';
+// @import 'https://www.licenseplates.tv/fonts/truetype/ag_newgermandecalnew.ttf';
+
+@font-face {font-family: 'a6x12mun';src: url('https://www.licenseplates.tv/fonts/truetype/ag_newgermandecalnew.ttf');}
+
+@font-face {font-family: 'a6x12mun';src: url('../../../assets/fonts/ag_newgermandecalnew.ttf');}
+.a6x12mun{font-family:'a6x12mun';}
+
+.form-control {
+    font-family: 'a6x12mun';
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #12a902;
+    border-color: #4cae4c;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+#decals .customizeproductimage.imgselector.active, #decalsyear .customizeproductimage.imgselector.active {
+    border: 1px solid #090;
+}
+
+.decalslabel {
+    float: none !important;
+}
+.decalslabel {
+    clear: both;
+    float: left;
+    font-weight: 700;
+    min-width: 135px;
+    padding-top: 12px;
+}
+
+.a6x12mun {
+    font-family: 'a6x12mun';
+}
+
+.largedecal {
+    display: block;
+}
+.largedecal {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    display: none;
+    border: 1px solid #dc232f;
+    transform: scale(2)
+}
+
+#decalsyear {
+    clear: both !important;
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+    padding: 10px;
+}
+
+#decalsyear .customizeproductimage {
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    width: 60px;
+}
+#decals .customizeproductimage, #decalsyear .customizeproductimage {
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    width: 60px;
+}
+.customizeproductimage {
+    border: 0 solid #ebebeb;
+    padding: 5px;
+    color: #dc232f;
+    text-align: center;
+    font-weight: bold;
+}
+
+.decal-date-info {
+    font-weight: 700;
+    color: #dc232f;
+    text-transform: uppercase;
+    clear: both;
+    display: block;
+}
+
+.symbolclick {
+    font-size: 20px;
+    height: 2px;
+    width: 40px;
+}
+
+.symbolclick {
+    border-radius: 10px;
+    display: table-cell;
+    font-size: 20px;
+    height: 34px;
+    margin: 2px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+    cursor: pointer;
+    font-family: 'a6x12mun';
+}
+
+.form-control {
+    background-color: #e5e5e5;
+    width: 90%;
+    height: 50px;
+    margin: auto;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.badge, ul.list-justify li.active, .btn-order.active.mat-menu-item {
+    background-color: #FFF !important;
+  }
+
+#prod-details .btn {
+    border: 2px solid #000;
+    background: #FFF;
+    border-radius: 0px;
+}
+
+#prod-details ul li {
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 0px;
+}
+
+#prod-details ul li i {
+    color: #000;
+    font-size: 20px;
+}
+
+#prod-details ul li p {
+    font-weight: 400;
+    transition: height 2s;
+}
+
+.tile_div .btn {
+    border-radius: 50%;
+    background: #FFF;
+    border: 2px solid #000;
+    height: 40px;
+    width: 41px;
+}
+
+.tile_div button,h5 {
+    display: block;
+    float: left;
+}
+
+.tile_div button,h5 {
+    margin-right: 0;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.btn i {
+    font-size: 18px;
+    color: #000;
+    position: relative;
+    top: 1px;
+}
+
+.txtnum {
+    margin-bottom: 0px;
+    font-size: 25px;
+    padding: 0 4px 0 4px;
+    position: relative;
+    top: 6px;
+}
+.container-fluid, .col-sm-4, .col-sm-12 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.card{
+    border-top: 4px solid #c3c3c3;
+    // border-bottom: 4px solid #c3c3c3;
+    padding: 1em;
+}
+
+h1,h2,h3,h4,h5 {
+    text-transform: none;
+}
+
+.card-text {
+        font-weight: 600;
+        color: #000;
+}
+
+.card_plate {
+    border-top: 2px solid #c3c3c3;
+    // margin-top: 2px;
+}
+
+.shop_now_btn img {
+    margin: 1em;
+}
+
+.footerblock {
+    background: #fff;
+    margin: 20px;
+    box-shadow: 1px 2px 2px 0px;
+    padding: 8px 10px;
+    min-height: 70px;
+    border: 1px solid #d8d8d8;
+}
+
+.text-danger {
+    color: #dc232f;
+    // font-weight: bold;
+}
+
+.old_price {
+    text-decoration: line-through;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #6b696b;
+    border-radius: 0px;
+    width: 50%;
+    margin: 1em;
+    background-color: #6b696b !important;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.well {
+    background-color: #fff;
+    border: 0px solid #fff;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+
+.banner{
+    padding: 60px 0 0 0;
+    background-color: $color-bg-gray3;
+    background-image: url('/assets/images/bg/brick-wall.png');
+    position: relative;
+    
+    &:before{
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        @include background-gradient(rgba(0,0,0,0.1),$color-bg-gray3);
+    }
+
+    .row{
+        margin-top: 0;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 2;
+
+        .content{
+            padding-top: 115px;
+            margin-bottom: 25px;
+
+            .sub-title{
+                text-transform: uppercase;
+            }
+
+            .title{
+                margin: 15px 0 40px 0;
+                text-transform: none;
+            }
+        }
+    }
+
+    .wrap-demo{
+        height: auto;
+        padding: 0 15px;
+    }
+
+    img{
+        display: block;
+    }
+}
+
+
+/* Loading
+======================== */
+.wrap-loading{
+    position: relative;
+    width: 100%; 
+    top: 0;
+    right: 0;
+
+    mat-spinner {
+      width: 50px; 
+      height: 50px; 
+      display: block;
+      margin: auto;
+    }
+}
+
+/* Wrap Home 2
+======================== */
+.wrap-home{
+    padding: 0 45px;
+    margin: 0;
+    position: relative;
+    background: #fff;
+    background-image: url('../../../assets/images/bg/brick-wall.png');
+
+    > .wrap-slider{
+        overflow: hidden;
+
+        > .row{
+            position: relative;
+            z-index: 1;  
+            margin: 0;    
+            @include transition("all 0.3s ease-in-out");
+    
+            .col{
+                padding: 0;      
+
+                .valign-wrapper{
+                    border-left: solid 1px #d0d0d0;
+                    border-right: solid 1px #d0d0d0;
+                    margin-left: -1px; 
+
+                    .content{
+                        display: block;
+                        width: 100%;
+                        padding: 0 15px;
+                        letter-spacing: .5px;
+
+                        .material-icons{
+                            position: relative;
+                            top: 2px;
+                        }
+
+                        img{
+                            width: 100%;
+                            padding: 15px;
+                            margin-bottom: 15px;
+                        }
+                
+                        h1, h2, h3, h4, h5, h6{
+                            font-weight: 900;
+                            text-transform: none;
+                        }
+                    }
+                }
+
+                &.demo .valign-wrapper .content{
+                    padding: 55px;
+                }
+            }
+        }
+    }
+
+    .nav{
+        position: absolute;
+        background: transparent;
+        width: 45px;
+        height: 100%;
+        text-align: center !important;
+        line-height: 35px;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        border: 0;
+        outline: 0;
+        display: block;
+        color: $color-content;
+        background: #fff;
+
+        &:focus{
+            background: #fff;
+        }
+
+        &.next{
+            margin-left: -45px;
+            left: 100%;
+        }
+
+        &:disabled{
+            @include opacity(0.5);
+        }
+
+        mat-icon{
+            position: relative;
+            right: 6px;
+            top: 2px;
+            font-size: 32px;
+        }
+    }
+}
+
+/* Responsive
+======================== */
+@media(max-width: 1200px){
+    .wrap-home > .wrap-slider > .row .col .valign-wrapper .content{
+        padding: 0 30px;
+    }
+}
+
+@media(max-width: 920px){
+    .wrap-home{
+        padding: 0;
+
+        > .wrap-slider {
+            border: 0;
+
+            .row{
+                width: 100% !important;
+                transform: translateX(0) !important;
+
+                .col{
+                    width: 100% !important;
+                    border-bottom: solid 1px #efefef;
+                    background: rgba(255,255,255,0.5);
+
+                    &.demo{
+                        background: transparent;
+                    }
+
+                    .valign-wrapper{
+                        height: auto !important;
+
+                        .content{
+                            padding: 55px 30px;
+                        }
+                    }
+                } 
+            } 
+        }
+
+        .nav{
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width:920px){
+    .wrap-home > .wrap-slider > .row .col{
+        .valign-wrapper .content{
+            width: 80%;
+            display: table;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            text-align: left !important;
+            padding-left: 250px;
+
+            img{
+                padding: 30px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 250px;
+            }
+        }
+    }
+}
+
+@media(max-width: 767px){
+    .wrap-home > .wrap-slider > .row .col{
+        .valign-wrapper{
+            border: 0;
+
+            .content{
+                padding: 55px 15px;
+
+                img{
+                    width: 250px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+}

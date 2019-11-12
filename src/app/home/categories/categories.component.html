@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+  <div *ngIf="parent" class="row">
+      <div class="col-sm-12 text-center" style="padding-top: 3px">
+          <h4><strong>{{parent.categories_name}}</strong></h4>
+          <img width="100%" src="{{imgUrl}}{{parent.categories_image_header}}" alt="">
+      </div>
+  </div> <!-- row -->
+
+  <div class="row">
+
+      <ng-container *ngIf="!subCategories">
+              <div class="col-12 text-center">
+                    <img width="14%" src="/assets/images/loader.svg" alt="">
+                      <h6>loading...</h6>
+                  </div>
+      </ng-container>
+      
+      <ng-container *ngIf="subCategories">
+              <div *ngFor="let item of subCategories" class="col-sm-3 card_plate">
+                      <div class="card text-center" (click)="getProduct(item)">
+                              <img class="card-img-top" width="40%" src="{{imgUrl}}resized_{{item.categories_image}}" alt="{{item.categories_name}}" (click)="getProduct(item)">
+                              <div class="card-body">
+                                  <!-- <a class="shop_now_btn" href="javascript:void(0)"><img src="assets/images/shop_now_button.png" (click)="subCat(item)" width="250" alt="Shop Now"></a> -->
+      
+                                      <div class="well">
+                                              <h5 style="font-size: 20px;" class="card-title " (click)="getProduct(item)">{{item.categories_name}}</h5>
+                                              <!-- <p class="card-text">{{item.desc}}</p> -->
+                                      </div>
+                                
+                                
+                              </div>
+                            </div>
+              </div>
+      </ng-container>
+     
+  </div>
+
+</div> <!-- container-fluid -->

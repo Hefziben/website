@@ -1,0 +1,102 @@
+/*
+Import
+=========================== */
+@import '../../../assets/sass/css3-mixins';
+@import '../../../assets/sass/variable';
+// @import 'https://www.licenseplates.tv/includes/templates/mars/css/stylesheet.css';
+// @import 'https://www.licenseplates.tv/fonts/truetype/ag_newgermandecalnew.ttf';
+
+@font-face {font-family: 'a6x12mun';src: url('https://www.licenseplates.tv/fonts/truetype/ag_newgermandecalnew.ttf');}
+
+@font-face {font-family: 'a6x12mun';src: url('../../../assets/fonts/ag_newgermandecalnew.ttf');}
+.a6x12mun{font-family:'a6x12mun';}
+
+.form-control {
+    font-family: 'a6x12mun';
+}
+
+#decals .customizeproductimage.imgselector.active, #decalsyear .customizeproductimage.imgselector.active {
+    border: 1px solid #090;
+}
+
+.decalslabel {
+    float: none !important;
+}
+.decalslabel {
+    clear: both;
+    float: left;
+    font-weight: 700;
+    min-width: 135px;
+    padding-top: 12px;
+}
+
+.a6x12mun {
+    font-family: 'a6x12mun';
+}
+
+
+
+
+h3,h4,h5,h6 {
+    text-transform: none;
+}
+
+.col-xs-5,.col-sm-5,.col-sm-2 {
+    // padding-left: 0px;
+    // padding-right: 0px;
+}
+
+.mb-4 {
+    margin-bottom: 2.5em;
+}
+
+h6 {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+h4 {
+    font-size: 21px;
+}
+
+.items {
+    margin-bottom: 1em;
+}
+
+.tile_div {
+    margin-top: 2px;
+}
+
+.tile_div .btn {
+    border-radius: 50%;
+    background: #FFF;
+    border: 2px solid #000;
+    height: 35px;
+    width: 36px;
+}
+
+#tile_div .tile_div button,h5 {
+    display: block;
+    float: left;
+}
+
+#tile_div .tile_div button,h5 {
+    margin-right: 0;
+}
+
+.txtnum {
+    margin-bottom: 0px;
+    font-size: 24px;
+    padding: 0 4px 0 4px;
+    position: relative;
+    top: 6px;
+    color: #000;
+}
+
+.tile_div .fa {
+    color: #000;
+}
+
+.text-danger {
+    color: #d9232e;
+}

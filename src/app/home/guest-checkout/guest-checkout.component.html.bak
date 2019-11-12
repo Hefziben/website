@@ -1,0 +1,663 @@
+<div class="container-fluid">
+  <div *ngIf="!doPaypal" class="row">
+
+    <div class="col-sm-12">
+      <h6 *ngIf="!loggedIn" class="txt-badge"> <span style="background: #000;padding: 3px;">GUEST CHECKOUT</span> </h6>
+      <h6 *ngIf="loggedIn" class="txt-badge"> <span style="background: #000;padding: 3px;">CHECKOUT</span> </h6>
+      <h4>BILLING INFORMATION</h4>
+      <h5> <span class="text-danger">*</span> = Required Information</h5> 
+
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="First Name">
+              <small *ngIf="!model.fname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+        </div>
+        
+
+    <div class="form-group row">
+        <div class="col-xs-11">
+            <input type="text" [(ngModel)]="model.lname" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Last Name">
+            <small *ngIf="!model.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+          </div>          
+        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+      </div>
+
+    <div class="form-group row">
+        <div class="col-xs-11">
+            <input type="text" [(ngModel)]="model.company" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Company/Care Of">
+            <!-- <small *ngIf="!model.company&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small> -->
+          </div>          
+        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger"></label>       
+        <!-- <span class="text-danger">*</span> -->
+      </div>
+
+    <div class="form-group row">
+        <div class="col-xs-11">
+            <input type="text" [(ngModel)]="model.street_address" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Street Address">
+            <small *ngIf="!model.street_address&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+          </div>          
+        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+      </div>
+
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input type="text" [(ngModel)]="model.address_line_1" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Address Line 2">
+              <!-- <small *ngIf="!model.address_line_1&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small> -->
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger"></label>         
+          <!-- <span class="text-danger">*</span> -->
+        </div>
+
+
+  <div class="form-group row">
+      <div class="col-xs-11">
+          <input type="text" [(ngModel)]="model.city" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="City">
+          <small *ngIf="!model.city&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+        </div>          
+      <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-xs-11">
+            <!-- <input type="text" [(ngModel)]="model.country" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Country"> -->           
+              <!-- <option selected>{{this.country}}</option> value="223" us -->
+            <select name="zone_country_id" id="country" (change)="checkCountry($event)" class="form-control"  id="exampleFormControlSelect1">
+              <option *ngFor="let item of Countries" (click)="getItem(item)" value="{{item.code}}" select>{{item.name}}</option>
+            </select>
+            <small *ngIf="!model.country&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+          </div>          
+        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+      </div>
+
+
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input *ngIf="model.country != 'Canada' && model.country != 'United States'" type="text" [(ngModel)]="model.state" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="State/Province">
+              
+              <select class="form-control" *ngIf="model.country == 'Canada'" (change)="CheckState($event)" [(ngModel)]="state" name="zone_id" id="stateZone"> 
+                <option>Please select ...</option>
+                <option (click)="checkState($event.target.innerText)" value="66" select>Alberta</option>
+                <option (click)="checkState($event.target.innerText)" value="67">British Columbia</option>
+                <option (click)="checkState($event.target.innerText)" value="68">Manitoba</option>
+                <option (click)="checkState($event.target.innerText)" value="70">New Brunswick</option>
+                <option (click)="checkState($event.target.innerText)" value="69">Newfoundland</option>
+                <option (click)="checkState($event.target.innerText)" value="72">Northwest Territories</option>
+                <option (click)="checkState($event.target.innerText)" value="71">Nova Scotia</option>
+                <option (click)="checkState($event.target.innerText)" value="73">Nunavut</option>
+                <option (click)="checkState($event.target.innerText)" value="74">Ontario</option>
+                <option (click)="checkState($event.target.innerText)" value="75">Prince Edward Island</option>
+                <option (click)="checkState($event.target.innerText)" value="76">Quebec</option>
+                <option (click)="checkState($event.target.innerText)" value="77">Saskatchewan</option>
+                <option (click)="checkState($event.target.innerText)" value="78">Yukon Territory</option>
+              </select>
+
+              <select *ngIf="model.country == 'United States'" [(ngModel)]="state" (change)="CheckState($event)" name="zone_id" id="stateZone" class="form-control">
+                <option>Please select ...</option>
+                <option (click)="checkState($event.target.innerText)" value="1" select>Alabama</option>
+                <option (click)="checkState($event.target.innerText)" value="2">Alaska</option>
+                <option (click)="checkState($event.target.innerText)" value="3">American Samoa</option>
+                <option (click)="checkState($event.target.innerText)" value="4">Arizona</option>
+                <option (click)="checkState($event.target.innerText)" value="5">Arkansas</option>
+                <option (click)="checkState($event.target.innerText)" value="6">Armed Forces Africa</option>
+                <option (click)="checkState($event.target.innerText)" value="7">Armed Forces Americas</option>
+                <option (click)="checkState($event.target.innerText)" value="8">Armed Forces Canada</option>
+                <option (click)="checkState($event.target.innerText)" value="9">Armed Forces Europe</option>
+                <option (click)="checkState($event.target.innerText)" value="10">Armed Forces Middle East</option>
+                <option (click)="checkState($event.target.innerText)" value="11">Armed Forces Pacific</option>
+                <option (click)="checkState($event.target.innerText)" value="12">California</option>
+                <option (click)="checkState($event.target.innerText)" value="13">Colorado</option>
+                <option (click)="checkState($event.target.innerText)" value="14">Connecticut</option>
+                <option (click)="checkState($event.target.innerText)" value="15">Delaware</option>
+                <option (click)="checkState($event.target.innerText)" value="16">District of Columbia</option>
+                <option (click)="checkState($event.target.innerText)" value="17">Federated States Of Micronesia</option>
+                <option (click)="checkState($event.target.innerText)" value="18">Florida</option>
+                <option (click)="checkState($event.target.innerText)" value="19">Georgia</option>
+                <option (click)="checkState($event.target.innerText)" value="20">Guam</option>
+                <option (click)="checkState($event.target.innerText)" value="21">Hawaii</option>
+                <option (click)="checkState($event.target.innerText)" value="22">Idaho</option>
+                <option (click)="checkState($event.target.innerText)" value="23">Illinois</option>
+                <option (click)="checkState($event.target.innerText)" value="24">Indiana</option>
+                <option (click)="checkState($event.target.innerText)" value="25">Iowa</option>
+                <option (click)="checkState($event.target.innerText)" value="26">Kansas</option>
+                <option (click)="checkState($event.target.innerText)" value="27">Kentucky</option>
+                <option (click)="checkState($event.target.innerText)" value="28">Louisiana</option>
+                <option (click)="checkState($event.target.innerText)" value="29">Maine</option>
+                <option (click)="checkState($event.target.innerText)" value="30">Marshall Islands</option>
+                <option (click)="checkState($event.target.innerText)" value="31">Maryland</option>
+                <option (click)="checkState($event.target.innerText)" value="32">Massachusetts</option>
+                <option (click)="checkState($event.target.innerText)" value="33">Michigan</option>
+                <option (click)="checkState($event.target.innerText)" value="34">Minnesota</option>
+                <option (click)="checkState($event.target.innerText)" value="35">Mississippi</option>
+                <option (click)="checkState($event.target.innerText)" value="36">Missouri</option>
+                <option (click)="checkState($event.target.innerText)" value="37">Montana</option>
+                <option (click)="checkState($event.target.innerText)" value="38">Nebraska</option>
+                <option (click)="checkState($event.target.innerText)" value="39">Nevada</option>
+                <option (click)="checkState($event.target.innerText)" value="40">New Hampshire</option>
+                <option (click)="checkState($event.target.innerText)" value="41">New Jersey</option>
+                <option (click)="checkState($event.target.innerText)" value="42">New Mexico</option>
+                <option (click)="checkState($event.target.innerText)" value="43">New York</option>
+                <option (click)="checkState($event.target.innerText)" value="44">North Carolina</option>
+                <option (click)="checkState($event.target.innerText)" value="45">North Dakota</option>
+                <option (click)="checkState($event.target.innerText)" value="46">Northern Mariana Islands</option>
+                <option (click)="checkState($event.target.innerText)" value="47">Ohio</option>
+                <option (click)="checkState($event.target.innerText)" value="48">Oklahoma</option>
+                <option (click)="checkState($event.target.innerText)" value="49">Oregon</option>
+                <option (click)="checkState($event.target.innerText)" value="50">Palau</option>
+                <option (click)="checkState($event.target.innerText)" value="51">Pennsylvania</option>
+                <option (click)="checkState($event.target.innerText)" value="52">Puerto Rico</option>
+                <option (click)="checkState($event.target.innerText)" value="53">Rhode Island</option>
+                <option (click)="checkState($event.target.innerText)" value="54">South Carolina</option>
+                <option (click)="checkState($event.target.innerText)" value="55">South Dakota</option>
+                <option (click)="checkState($event.target.innerText)" value="56">Tennessee</option>
+                <option (click)="checkState($event.target.innerText)" value="57">Texas</option>
+                <option (click)="checkState($event.target.innerText)" value="58">Utah</option>
+                <option (click)="checkState($event.target.innerText)" value="59">Vermont</option>
+                <option (click)="checkState($event.target.innerText)" value="60">Virgin Islands</option>
+                <option (click)="checkState($event.target.innerText)" value="61">Virginia</option>
+                <option (click)="checkState($event.target.innerText)" value="62">Washington</option>
+                <option (click)="checkState($event.target.innerText)" value="63">West Virginia</option>
+                <option (click)="checkState($event.target.innerText)" value="64">Wisconsin</option>
+                <option (click)="checkState($event.target.innerText)" value="65">Wyoming</option>
+              </select>
+              <small *ngIf="!model.state&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-xs-11">
+                <input type="number" [(ngModel)]="model.zipcode" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Post/Zipcode">
+                <small *ngIf="!model.zipcode&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+              </div>          
+            <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+          </div> <br>
+
+    <h3 style="margin-bottom: 0px;margin-left: 12px;">ADDITIONAL DETAILS</h3>
+    <h6 style="margin-left: 12px;">We only need this info to keep you updated about your order(s)</h6>
+
+    <div class="form-group row">
+        <div class="col-xs-11">
+            <input type="number" [(ngModel)]="model.phone" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Telephone">
+            <small *ngIf="!model.phone&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+          </div>          
+        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+      </div>
+
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input type="email" [(ngModel)]="model.email" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Email">
+              <small *ngIf="!model.email&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+        </div> <br>
+
+       
+       
+       
+       
+        <div class="form-check form-check-inline">
+            <input style="transform: scale(1.2);" class="form-check-input" [(ngModel)]="same" (change)="setval()" #ctrl="ngModel" type="checkbox" id="inlineCheckbox1" value="{{same}}">
+            <label class="form-check-label text-danger" for="inlineCheckbox1">&nbsp; <strong>SAME ADDRESS FOR SHIPPING AND BILLING</strong> </label>
+          </div>
+
+
+
+
+
+
+
+
+
+          <ng-container *ngIf="!same">
+            <!-- <h6 class="txt-badge"> <span style="background: #000;padding: 3px;">GUEST CHECKOUT</span> </h6> -->
+          <h4>SHIPPING INFORMATION</h4>
+          <h5> <span class="text-danger">*</span> = Required Information</h5>
+    
+          <div class="form-group row">
+            <div class="col-xs-11">
+                <input type="text" [(ngModel)]="shipping.fname" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="First Name">
+                <small *ngIf="!shipping.fname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+              </div>          
+            <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+          </div>
+          
+  
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input type="text" [(ngModel)]="shipping.lname" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Last Name">
+              <small *ngIf="!shipping.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+        </div>
+  
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input type="text" [(ngModel)]="shipping.company" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Company/Care Of">
+              <!-- <small *ngIf="!shipping.company&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small> -->
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger"></label>       
+          <!-- <span class="text-danger">*</span> -->
+        </div>
+  
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <input type="text" [(ngModel)]="shipping.street_address" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Street Address">
+              <small *ngIf="!shipping.street_address&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+        </div>
+  
+        <div class="form-group row">
+            <div class="col-xs-11">
+                <input type="text" [(ngModel)]="shipping.address_line_1" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Address Line 2">
+                <!-- <small *ngIf="!shipping.address_line_1&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small> -->
+              </div>          
+            <label for="inputEmail3" class="col-xs-1 col-form-label text-danger"></label>         
+            <!-- <span class="text-danger">*</span> -->
+          </div>
+  
+  
+    <div class="form-group row">
+        <div class="col-xs-11">
+            <input type="text" [(ngModel)]="shipping.city" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="City">
+            <small *ngIf="!shipping.city&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+          </div>          
+        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+      </div>
+  
+      <div class="form-group row">
+          <div class="col-xs-11">
+              <!-- <input type="text" [(ngModel)]="shipping.country" #ctrl="ngModel" class="form-control " id="exampleInputText" aria-describedby="textHelp" placeholder="Country"> -->
+              <small *ngIf="!shipping.country&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+              <select name="zone_country_id" id="country" (change)="checkCountryShip($event)" class="form-control" id="exampleFormControlSelect1">
+                <!-- <option>Please Choose Your Country</option> -->
+                <!-- <option selected>{{this.country}}</option> value="223" us -->
+                <!-- <select name="zone_country_id" id="country" (change)="checkCountry($event)" class="form-control"  id="exampleFormControlSelect1"> -->
+                  <option *ngFor="let item of Countries" (click)="getItem(item)" value="{{item.code}}" select>{{item.name}}</option>
+                </select>
+            </div>          
+          <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+        </div>
+  
+  
+        <div class="form-group row">
+            <div class="col-xs-11">
+                <input *ngIf="country != 'Canada' && country != 'United States'" type="text" [(ngModel)]="shipping.state" #ctrl="ngModel" class="form-control" placeholder="State/Province">
+                
+                <select class="form-control" *ngIf="country == 'Canada'" (change)="checkStateShip($event)" name="ship_zone_id" id="ship_stateZone"> 
+                  <option>Please select ...</option>
+                  <option (click)="checkState($event.target.innerText)" value="66" select>Alberta</option>
+                  <option (click)="checkState($event.target.innerText)" value="67">British Columbia</option>
+                  <option (click)="checkState($event.target.innerText)" value="68">Manitoba</option>
+                  <option (click)="checkState($event.target.innerText)" value="70">New Brunswick</option>
+                  <option (click)="checkState($event.target.innerText)" value="69">Newfoundland</option>
+                  <option (click)="checkState($event.target.innerText)" value="72">Northwest Territories</option>
+                  <option (click)="checkState($event.target.innerText)" value="71">Nova Scotia</option>
+                  <option (click)="checkState($event.target.innerText)" value="73">Nunavut</option>
+                  <option (click)="checkState($event.target.innerText)" value="74">Ontario</option>
+                  <option (click)="checkState($event.target.innerText)" value="75">Prince Edward Island</option>
+                  <option (click)="checkState($event.target.innerText)" value="76">Quebec</option>
+                  <option (click)="checkState($event.target.innerText)" value="77">Saskatchewan</option>
+                  <option (click)="checkState($event.target.innerText)" value="78">Yukon Territory</option>
+                </select>
+  
+                <select *ngIf="country == 'United States'" (change)="checkStateShip($event)" name="ship_zone_id" id="ship_stateZone" class="form-control">
+                  <option>Please select ...</option>
+                  <option (click)="checkState($event.target.innerText)" value="1" select>Alabama</option>
+                  <option (click)="checkState($event.target.innerText)" value="2">Alaska</option>
+                  <option (click)="checkState($event.target.innerText)" value="3">American Samoa</option>
+                  <option (click)="checkState($event.target.innerText)" value="4">Arizona</option>
+                  <option (click)="checkState($event.target.innerText)" value="5">Arkansas</option>
+                  <option (click)="checkState($event.target.innerText)" value="6">Armed Forces Africa</option>
+                  <option (click)="checkState($event.target.innerText)" value="7">Armed Forces Americas</option>
+                  <option (click)="checkState($event.target.innerText)" value="8">Armed Forces Canada</option>
+                  <option (click)="checkState($event.target.innerText)" value="9">Armed Forces Europe</option>
+                  <option (click)="checkState($event.target.innerText)" value="10">Armed Forces Middle East</option>
+                  <option (click)="checkState($event.target.innerText)" value="11">Armed Forces Pacific</option>
+                  <option (click)="checkState($event.target.innerText)" value="12">California</option>
+                  <option (click)="checkState($event.target.innerText)" value="13">Colorado</option>
+                  <option (click)="checkState($event.target.innerText)" value="14">Connecticut</option>
+                  <option (click)="checkState($event.target.innerText)" value="15">Delaware</option>
+                  <option (click)="checkState($event.target.innerText)" value="16">District of Columbia</option>
+                  <option (click)="checkState($event.target.innerText)" value="17">Federated States Of Micronesia</option>
+                  <option (click)="checkState($event.target.innerText)" value="18">Florida</option>
+                  <option (click)="checkState($event.target.innerText)" value="19">Georgia</option>
+                  <option (click)="checkState($event.target.innerText)" value="20">Guam</option>
+                  <option (click)="checkState($event.target.innerText)" value="21">Hawaii</option>
+                  <option (click)="checkState($event.target.innerText)" value="22">Idaho</option>
+                  <option (click)="checkState($event.target.innerText)" value="23">Illinois</option>
+                  <option (click)="checkState($event.target.innerText)" value="24">Indiana</option>
+                  <option (click)="checkState($event.target.innerText)" value="25">Iowa</option>
+                  <option (click)="checkState($event.target.innerText)" value="26">Kansas</option>
+                  <option (click)="checkState($event.target.innerText)" value="27">Kentucky</option>
+                  <option (click)="checkState($event.target.innerText)" value="28">Louisiana</option>
+                  <option (click)="checkState($event.target.innerText)" value="29">Maine</option>
+                  <option (click)="checkState($event.target.innerText)" value="30">Marshall Islands</option>
+                  <option (click)="checkState($event.target.innerText)" value="31">Maryland</option>
+                  <option (click)="checkState($event.target.innerText)" value="32">Massachusetts</option>
+                  <option (click)="checkState($event.target.innerText)" value="33">Michigan</option>
+                  <option (click)="checkState($event.target.innerText)" value="34">Minnesota</option>
+                  <option (click)="checkState($event.target.innerText)" value="35">Mississippi</option>
+                  <option (click)="checkState($event.target.innerText)" value="36">Missouri</option>
+                  <option (click)="checkState($event.target.innerText)" value="37">Montana</option>
+                  <option (click)="checkState($event.target.innerText)" value="38">Nebraska</option>
+                  <option (click)="checkState($event.target.innerText)" value="39">Nevada</option>
+                  <option (click)="checkState($event.target.innerText)" value="40">New Hampshire</option>
+                  <option (click)="checkState($event.target.innerText)" value="41">New Jersey</option>
+                  <option (click)="checkState($event.target.innerText)" value="42">New Mexico</option>
+                  <option (click)="checkState($event.target.innerText)" value="43">New York</option>
+                  <option (click)="checkState($event.target.innerText)" value="44">North Carolina</option>
+                  <option (click)="checkState($event.target.innerText)" value="45">North Dakota</option>
+                  <option (click)="checkState($event.target.innerText)" value="46">Northern Mariana Islands</option>
+                  <option (click)="checkState($event.target.innerText)" value="47">Ohio</option>
+                  <option (click)="checkState($event.target.innerText)" value="48">Oklahoma</option>
+                  <option (click)="checkState($event.target.innerText)" value="49">Oregon</option>
+                  <option (click)="checkState($event.target.innerText)" value="50">Palau</option>
+                  <option (click)="checkState($event.target.innerText)" value="51">Pennsylvania</option>
+                  <option (click)="checkState($event.target.innerText)" value="52">Puerto Rico</option>
+                  <option (click)="checkState($event.target.innerText)" value="53">Rhode Island</option>
+                  <option (click)="checkState($event.target.innerText)" value="54">South Carolina</option>
+                  <option (click)="checkState($event.target.innerText)" value="55">South Dakota</option>
+                  <option (click)="checkState($event.target.innerText)" value="56">Tennessee</option>
+                  <option (click)="checkState($event.target.innerText)" value="57">Texas</option>
+                  <option (click)="checkState($event.target.innerText)" value="58">Utah</option>
+                  <option (click)="checkState($event.target.innerText)" value="59">Vermont</option>
+                  <option (click)="checkState($event.target.innerText)" value="60">Virgin Islands</option>
+                  <option (click)="checkState($event.target.innerText)" value="61">Virginia</option>
+                  <option (click)="checkState($event.target.innerText)" value="62">Washington</option>
+                  <option (click)="checkState($event.target.innerText)" value="63">West Virginia</option>
+                  <option (click)="checkState($event.target.innerText)" value="64">Wisconsin</option>
+                  <option (click)="checkState($event.target.innerText)" value="65">Wyoming</option>
+                </select>
+                <small *ngIf="!shipping.state&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+              </div>          
+            <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+          </div>
+  
+          <div class="form-group row">
+              <div class="col-xs-11">
+                  <input type="number" [(ngModel)]="shipping.zipcode" #ctrl="ngModel" class="form-control " id="exampleInputText" placeholder="Post/Zipcode">
+                  <small *ngIf="!shipping.zipcode&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                </div>          
+              <label for="" class="col-xs-1 col-form-label text-danger">*</label>
+            </div> <br>
+          </ng-container> <br>
+
+          <div class="col-sm-12 text-center free-ship-tag">
+            FREE SHIPPING TO ALL USA ADDRESSES
+          </div>
+          
+          <div class="row">
+            <div class="col-xs-12 ">
+              <img width="100%" src="assets/images/shipping/security.jpg" alt="security">
+              <!-- <img src="assets/images/shipping/security.jpg" alt="security">
+              <img src="assets/images/shipping/security.jpg" alt="security"> -->
+            </div>
+  
+            <div class="col-xs-6">
+              <img width="100%" src="assets/images/shipping/getgeotrustsslseal.png" alt="security">
+            </div>
+            <div class="col-xs-6">
+              <img width="100%" src="assets/images/shipping/Credit_Card_Safe_light.png" alt="security"></div>
+          </div>
+         <div class="col-sm-12 text-success text-center">All information is encrypted and transmitted without riskusing a Secure Socket Layer (SSL) protocol.</div> <hr>
+
+         <div style="padding-left: 0px;padding-right: 0px;" class="col-sm-12">
+           <h3 style="font-weight: normal;color: #000;">REVIEW YOUR ORDER</h3>
+
+           <div id="product" class="row items" *ngFor="let item of Items; index as i">
+            <ng-container >
+              <div class="col-xs-6">
+                <img *ngIf="!item.plateText1" style="cursor: pointer;" (click)="getProduct(item)" class="card-img-top" width="100%" src="{{imgUrl}}{{item.productImage}}" alt="IMG_PRODUCT"> <br>
+                <img *ngIf="item.plateText1" class="card-img-top" width="90%" src="https://www.licenseplates.tv/lpgenI.php?productId={{item.productModel}}&text1={{item.plateText1}}&text2={{item.plateText2}}&font={{font}}" alt="IMG_PRODUCT">
+                <!-- <div class="row">
+                  <div style="padding-left: 0px;padding-right: 0px" class="col-xs-6 text-left">
+                    <h6 style="cursor: pointer;" (click)="edit(item,i);"><u>Edit</u> </h6>
+                  </div>
+                  <div style="padding-left: 0px;padding-right: 0px" class="col-xs-6 text-right">
+                    <h6 style="cursor: pointer;" (click)="remove(i);"><u>Remove</u>  </h6>
+                  </div>
+                </div> -->
+              </div>
+      
+              <div class="col-xs-6">
+                <h6 style="width: 100%;margin: auto;color: #000" class="card-title">{{item.productName}}</h6> 
+                <div class="row">
+                  <div style="padding-left: 0px;padding-right: 0px;margin-top: 2px" class="col-xs-12">
+                    <h6 *ngIf="item.plateText1">Text: <span class="a6x12mun">{{item.plateText1}}</span> </h6> 
+                    <h6 *ngIf="item.plateText2">Text 2: <span class="a6x12mun">{{item.plateText2}}</span></h6>
+                    <h6 class="text-danger"><strong>${{item.TotalPrice | number : '1.2-2'}}</strong> </h6>
+                  </div>
+                  <div style="padding-left: 0px;padding-right: 0px;" *ngIf="item.plateType == 'Add Black Plate Holder'" class="col-xs-12">
+                      <h6><small>Universal Plate Holder - {{item.plateType}}</small> </h6>
+                    <img width="100" src="assets/images/universalplateholder1.jpg" alt="IMG_Black Plate Holder">
+                  </div>
+                  <div style="padding-left: 0px;padding-right: 0px;" *ngIf="item.plateType == 'Add CHROME Plate Holder'" class="col-xs-12">
+                      <h6><small>Universal Plate Holder - {{item.plateType}}</small> </h6>
+                      <img width="100" src="assets/images/universalplateholder2.jpg" alt="IMG_Black Plate Holder">
+                    </div>
+                  <div id="tile_div" style="padding-left: 0px;padding-right: 0px;margin-top: 5px" class="col-xs-12 text-center">
+                    <!-- <div class="col-xs-6 col-sm-6 text-center"> -->
+                      <!-- <span class="tile_div">
+                        <button (click)="decriment(item)" class="btn"><i class="fa fa-minus" aria-hidden="true"></i></button>&nbsp;
+                       &nbsp;<h5 class="txtnum">{{item.itemQuantity}}</h5>&nbsp;
+                       <button (click)="incriment(item)" class="btn"><i class="fa fa-plus" aria-hidden="true"></i></button>&nbsp;
+                      </span>                -->
+                     <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            
+
+          </div> <!--Row-->
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label style="font-weight: normal; color: #000;" for="exampleFormControlTextarea1">SPECIAL INSTRUCTIONS OR ORDER COMMENTS (optional)</label>
+              <textarea style="height: auto;" [(ngModel)]="model.instructions" #ctrl="ngModel" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div id="checkout-box" style="background: #ddd;" class="row">
+            <div style="padding-left: 0px;padding-right: 0px" class="col-xs-12 table-responsive">
+
+                <table *ngIf="sum" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Coupon:</th>
+
+                        <th scope="col">
+                            <input type="text" [(ngModel)]="model.coupon" #ctrl="ngModel" class="form-control ">
+                        </th>
+
+                        <th scope="col"><button (click)="checkCoupon()" class="btn btn-danger">apply</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="col">Sub-Total:</td>
+                        <td></td>
+                        <td><strong>${{sum | number : '1.2-2'}}</strong></td>
+                      </tr>
+                      <tr>
+                        <td scope="col">Tax:</td>
+                        <td></td>
+                        <td><strong>${{tax | number : '1.2-2'}}</strong></td>
+                      </tr>
+                      <tr>
+                        <td scope="col">Coupon Discount:</td>
+                        <td></td>
+                        <td><strong>${{coupon | number : '1.2-2'}}</strong></td>
+                      </tr>
+                      <tr class="border-bot">
+                        <td>Shipping:</td> 
+                        <td></td>
+                        <td *ngIf="ship_amt == 0" class="text-danger">FREE</td>
+                        <td *ngIf="ship_amt > 0" class="text-secondary">${{ship_amt | number : '1.2-2'}}</td>
+                      </tr>
+                      <tr>
+                          <td>Total:</td>
+                          <td></td>
+                          <!-- <td><strong>$ {{getTotalAmount()}}</strong></td> -->
+                           <td><strong>${{totalamount | number : '1.2-2'}}</strong></td>
+                        </tr>
+                    </tbody>
+                  </table>
+
+            </div>
+            
+          </div>
+
+         </div>
+
+    </div>
+
+    <div class="col-sm-12"> <br>
+      <h3>PAYMENT METHOD</h3>
+      <h6>Please select a payment method for this order</h6> </div>
+
+      <div id="credit-card" class="row">
+        <div class="col-xs-5">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+             &nbsp; Credit card
+            </label>
+          </div>
+        </div>
+  
+        <div class="col-xs-7 no-pad">
+          <img width="92%" src="assets/images/credit_cart.gif" alt="">
+        </div>
+
+      </div>
+
+      <section>
+          <div id="card-details" class="row">
+              <div class="col-xs-12">
+                <input type="text" [(ngModel)]="card.name" #ctrl="ngModel" class="form-control " placeholder="Cardholder Name">
+              </div>
+              <div class="col-xs-12">
+                <input type="number" [(ngModel)]="card.number" #ctrl="ngModel" class="form-control " placeholder="Card Number">
+              </div>
+              <div class="col-xs-6">
+                <input type="number" [(ngModel)]="card.month" #ctrl="ngModel" class="form-control " placeholder="Expiry Month">
+              </div>
+              <div class="col-xs-6">
+                <input type="number" [(ngModel)]="card.year" #ctrl="ngModel" class="form-control " placeholder="Expiry Year">
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <input type="number" [(ngModel)]="card.cvv" #ctrl="ngModel" class="form-control " placeholder="CVV Number">         
+                <input type="hidden" name="dataValue" id="dataValue" />
+                <input type="hidden" name="dataDescriptor" id="dataDescriptor" />   
+              </div>
+
+              <!-- <div class="col-xs-12">
+                <button type="button" (click)="sendPaymentDataToAnet()">Pay</button>
+              </div>
+               -->
+              <div class="col-xs-6 text-left whats">
+                  <a href="javascript:void(0)">what's this?</a> 
+              </div>
+            </div>
+      </section>
+       
+        
+        <section>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img src="assets/images/cvv_info.gif" alt="">
+                  </div>
+          
+                  <div  class="col-xs-12 order-complete text-center">
+                    <img (click)="checkout()" src="assets/images/button_complete_order.gif" alt="">
+                  </div>
+            </div>
+        </section>
+        
+        
+
+      
+        <section>
+            <div id="paypal" class="row">
+
+                <div style="padding-right: 0px" class="col-xs-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                          <img src="assets/images/paypal-small.gif" alt="">
+                      </label>
+                    </div>
+                  </div>
+            
+                  <div style="padding-left: 0px" class="col-xs-8">
+                    <h6> Save time. Checkout securely.</h6> 
+                  </div>
+      
+                  <div class="col-xs-12 paypal-btn">
+                      <img (click)="initConfig()" width="75%" src="assets/images/paypal.gif" alt="">
+                    </div>
+
+                    <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+                    
+                    <div class="col-xs-12 text-center">
+                      <!-- <h5>Pay without sharing your financial information.</h5> -->
+                      <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+                      
+
+                      <!-- <div id="paypal-button-container"></div> <br> -->
+                      <!-- <div id="paypal-checkout-btn"></div> <br> -->
+                      <!-- <button id="confirm-button" class="btn">hhh</button> -->
+                    </div>
+            </div>
+        </section>
+
+  
+      
+      
+
+    
+
+  </div>
+
+  <div [hidden]="!doPaypal" class="row text-center">
+     
+    <ng-container>
+          <div [hidden]="!verifying" class="col-sm-4 text-center">
+              <img width="14%" src="/assets/images/loader.svg" alt="">
+                  <h6>verifying...</h6>
+              </div>
+    </ng-container>
+
+    <ng-container>
+      <div  [hidden]="verifying" class="col-sm-12">
+        <h4> <u>Paypal Checkout</u> </h4> <br>
+        <img src="assets/images/paypal-small.gif" alt="">
+        <h3> <strong>$ {{getTotalAmount()}}</strong> </h3>
+        <div id="paypal-checkout-btn"></div>
+        <button (click)="goBack()" class="btn btn-danger">Go back</button>
+    </div>
+    </ng-container>
+   
+    
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- <div class="col-sm-6 text-center">
+  <p>loader 3</p>
+  <div class="loader3">
+    <span></span>
+    <span></span>
+  </div>
+</div> -->

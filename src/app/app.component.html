@@ -1,0 +1,25 @@
+<!-- Start Wrap -->
+<div class="wrap" [class.on]="mainclass">
+    <!-- <app-side (toggle)="mainclass = !mainclass"></app-side> -->
+    <app-sidebar></app-sidebar>
+    <div class="main">
+        <router-outlet></router-outlet>
+        <!-- Start Footer -->
+        <footer>
+            <div class="container">
+                <ul class="list-inline social">
+                    <li><a><img src="/assets/images/footer/fb.png" alt=""/></a></li>
+                    <li><a><img src="/assets/images/footer/twitter.png" alt=""/></a></li>
+                    <li><a><img src="/assets/images/footer/insta.png" alt=""/></a></li>
+                    <li><a><img src="/assets/images/footer/gplus.png" alt=""/></a></li>
+                    <li><a><img src="/assets/images/footer/youtube.png" alt=""/></a></li>
+                    <li><a><img src="/assets/images/footer/p.png" alt=""/></a></li>
+                    <li><a><img src="/assets/images/footer/blog.png" alt=""/></a></li>
+                </ul>
+                <p class="margin-bottom0">Copyright © 2002-2018 Autogeardepot.com, Inc.All rights Reserved.</p>
+            </div>
+        </footer>
+        <!-- End Footer -->
+    </div>
+</div>
+<!-- End Wrap -->

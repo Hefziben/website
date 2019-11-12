@@ -1,0 +1,83 @@
+/*
+Import
+=========================== */
+@import '../../../assets/sass/css3-mixins';
+@import '../../../assets/sass/variable';
+
+/*
+Layout
+=========================== */
+ul.list-product li{
+    padding-left: 75px;
+    padding-right: 0;
+
+    .wrap-img{
+        left: 0;
+    }
+}
+
+.col{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+table.count{
+    margin-top: -1px;
+}
+
+.link{
+    display: inline-block;
+}
+
+.btn-paypal{
+    position: relative;
+
+    span{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        @include opacity(0.5);
+    }
+    
+    .content{
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/*
+Loading
+=========================== */
+.wrap-loading{
+    margin-top: 30px;
+    position: relative;
+    width: 100%; 
+    top: 0;
+    right: 0;
+    background: #fff;
+
+    .mat-progress-spinner{ 
+        display: block;
+        margin: auto;
+    }
+}
+
+/*
+Responsive
+=========================== */
+@media (max-width: 920px){
+    .btn{
+        width: 100%;
+        display: block;
+    }
+}
+
+@media (max-width: 568px){
+    form{
+        margin-bottom: 50px;
+    }
+}    

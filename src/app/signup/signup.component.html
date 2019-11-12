@@ -1,0 +1,197 @@
+<div class="container-fluid">
+  <div class="row">
+
+      <div class="col-sm-12">
+
+          <h4 class="txt-heading">My Account Information</h4> <hr>
+  
+           <br>
+            <h6 *ngIf="loading" class="text-center"> <img width="11%" src="/assets/images/loader.svg" alt=""> checking..</h6>
+            
+            <div *ngIf="message" class="alert text-center" [ngClass]="message == 'Login successfully' ? 'alert-success' : 'alert-danger'" role="alert">
+                {{message}}
+              </div>
+              
+              <p>NOTE: If you already have an account with us, please login at the login page.</p>
+              <!-- <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" [(ngModel)]="user.email" #ctrl="ngModel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+  
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" [(ngModel)]="user.password" #ctrl="ngModel" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div> -->
+              <!-- <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div> -->
+              <!-- <button [disabled]="!model.email || !model.password" type="submit" (click)="authCheck()" class="btn btn-block btn-lg btn-primary">Submit</button> <br>
+  
+              <a class="fpass-txt" (click)="forgotPass()" href="javascript:void(0)">Forgot Password ?</a> <hr class="end">  <br> -->
+  
+              <h4 class="txt-heading">Your Personal Details</h4> <hr>
+  
+              <!-- <p>Create a customer profile with Licenseplates.tv which allows you to shop faster, track the status of your current 
+                        orders and review your previous orders.</p> -->
+  
+              <h6 class="text-danger text-right">* Required information</h6>  
+              
+              <h5>Company Details</h5>
+  
+              <div class="form-group">
+                  <label for="exampleInputcname">Company Name</label>
+                  <input type="text" [(ngModel)]="model.company_name" #ctrl="ngModel" class="form-control" id="exampleInputcname" placeholder="Company Name">
+                </div> <br>
+  
+                <h5>Address Details</h5>    
+  
+                <div class="form-group row">
+                    <div class="col-xs-11">
+                        <label class="label" for="exampleInputfname">First Name:</label>
+                        <input type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control" id="exampleInputfname" placeholder="First Name">
+                        <small *ngIf="!model.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                      </div>          
+                    <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                </div>
+  
+                <div class="form-group row">
+                    <div class="col-xs-11">
+                        <label class="label" for="exampleInputlname">Last Name:</label>
+                        <input type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control" id="exampleInputlname" placeholder="Last Name">
+                        <small *ngIf="!model.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                      </div>          
+                    <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                </div>
+  
+                <div class="form-group row">
+                    <div class="col-xs-11">
+                        <label class="label" for="exampleInputsaddress">Street Address:</label>
+                        <input type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control" id="exampleInputsaddress" placeholder="Street Address">
+                        <small *ngIf="!model.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                      </div>          
+                    <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                </div>
+  
+                <div class="form-group row">
+                    <div class="col-xs-11">
+                        <label class="label" for="exampleInputaddressl2">Address Line 2:</label>
+                        <input type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control" id="exampleInputaddressl2" placeholder="Address Line 2">
+                        <!-- <small *ngIf="!model.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small> -->
+                      </div>          
+                    <label for="inputEmail3" class="col-xs-1 col-form-label text-danger"></label>
+                </div>
+  
+                <div class="form-group row">
+                    <div class="col-xs-11">
+                        <label class="label" for="exampleInputCity">City:</label>
+                        <input type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control" id="exampleInputCity" placeholder="City">
+                        <small *ngIf="!model.lname&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                      </div>          
+                    <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                </div>
+  
+                <div class="form-group row">
+                    <div class="col-xs-11">        
+                        <label class="label" for="exampleInputCountry">Country:</label>        
+                       <select name="zone_country_id" id="country" (change)="checkCountry($event)" class="form-control"  id="exampleInputCountry">
+                          <option *ngFor="let item of Countries" value="{{item.countries_id}}" select>{{item.countries_name}}</option>
+                        </select>
+                        <small *ngIf="!model.country&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                      </div>          
+                    <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                  </div>
+  
+                  <div class="form-group row">
+                      <div class="col-xs-11">        
+                          <label class="label" for="exampleInputState">State/Province:</label>        
+                         <select *ngIf="state" name="zone_country_id" id="country" (change)="checkState($event)" class="form-control"  id="exampleInputState">
+                            <option *ngFor="let item of States" value="{{item.zone_name}}" select>{{item.zone_name}}</option>
+                          </select>
+                          <input *ngIf="!state" type="text" [(ngModel)]="model.fname" #ctrl="ngModel" class="form-control" id="exampleInputState"  placeholder="State/Province">
+                          <small *ngIf="!model.country&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                        </div>          
+                      <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                    </div>
+                
+                    <div class="form-group row">
+                        <div class="col-xs-11">
+                            <label class="label" for="exampleInputPost">Post/Zip Code:</label>
+                            <input type="text" [(ngModel)]="model.zipcode" #ctrl="ngModel" class="form-control" id="exampleInputPost" aria-describedby="textHelp" placeholder="Post/Zip Code">
+                            <small *ngIf="!model.zipcode&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                          </div>          
+                        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                    </div> <br>
+  
+                    <h5>Additional Contact Details</h5>
+  
+                    <div class="form-group row">
+                        <div class="col-xs-11">
+                            <label class="label" for="exampleInputphone">Telephone:</label>
+                            <input type="text" [(ngModel)]="model.telephone" #ctrl="ngModel" class="form-control" id="exampleInputphone" placeholder="Telephone">
+                            <small *ngIf="!model.telephone&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                          </div>          
+                        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                    </div> 
+  
+                    <div class="form-group row">
+                        <div class="col-xs-11">
+                            <label class="label" for="exampleInputFax">Fax Number:</label>
+                            <input type="text" [(ngModel)]="model.fax" #ctrl="ngModel" class="form-control" id="exampleInputFax" placeholder="Fax Number">
+                            <!-- <small *ngIf="!model.fax&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small> -->
+                          </div>          
+                        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger"></label>
+                    </div> <br>
+  
+                    <h5>Login Details</h5>
+  
+                    <div class="form-group row">
+                        <div class="col-xs-11">
+                            <label class="label" for="exampleInputEmail2">Email:</label>
+                            <input type="email" [(ngModel)]="model.email" #ctrl="ngModel" class="form-control" id="exampleInputEmail2" aria-describedby="textHelp" placeholder="Telephone">
+                            <small *ngIf="!model.email&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                          </div>          
+                        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                    </div> 
+  
+                    <div class="form-group row">
+                        <div class="col-xs-11">
+                            <label class="label" for="exampleInputPass2">Password:</label>
+                            <input type="password" [(ngModel)]="model.password" #ctrl="ngModel" class="form-control" id="exampleInputPass2" placeholder="Password">
+                            <small *ngIf="!model.password&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                          </div>          
+                        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                    </div>     
+  
+                    <div class="form-group row">
+                        <div class="col-xs-11">
+                            <label class="label" for="exampleInputCPass2">Confirm Password:</label>
+                            <input type="password" [(ngModel)]="model.cpassword" #ctrl="ngModel" class="form-control" id="exampleInputCPass2" placeholder="Confirm Password">
+                            <small *ngIf="!model.cpassword&&check" id="emailHelp" class="form-text text-muted text-danger">this field is empty</small>
+                          </div>          
+                        <label for="inputEmail3" class="col-xs-1 col-form-label text-danger">*</label>
+                    </div> <br>
+  
+                    <h5>Newsletter and Email Details</h5>
+  
+                    <div id="news" class="row">
+                        <div class="form-check form-check-inline col">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">HTML</label>
+                          </div>
+                          <div class="form-check form-check-inline col">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">TEXT-Only</label>
+                          </div>
+                    </div> 
+
+                    <button [disabled]="!user.email || !user.password" type="submit" (click)="authCheck()" class="btn btn-block btn-lg btn-primary">Submit the Information</button> <br>
+                    
+                    <hr class="end">  <br>
+                    
+           
+  
+      </div>
+
+  </div>
+</div>

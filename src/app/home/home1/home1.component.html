@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <img width="100%" src="{{slider}}" alt="">
+        </div>
+    </div> <!-- row -->
+
+    <div class="row">
+
+        <ng-container *ngIf="!categories">
+                <div class="col-sm-4 text-center">
+                        <img width="14%" src="/assets/images/loader.svg" alt="">
+                        <h6>loading...</h6>
+                    </div>
+        </ng-container>
+        
+        <ng-container *ngIf="categories">
+                <div *ngFor="let item of categories" class="col-sm-4 card_plate">
+                        <div class="card text-center">
+                                <img class="card-img-top" width="80%" src="{{staticImgUrl}}{{item.image}}" alt="{{item.title}}" (click)="subCat(item)">
+                                <div class="card-body">
+                                    <a class="shop_now_btn" href="javascript:void(0)"><img src="assets/images/shop_now_button.png" (click)="subCat(item)" width="250" alt="Shop Now"></a>
+        
+                                        <div class="well footerblock">
+                                                <h5 style="font-size: 20px;" class="card-title text-danger" (click)="subCat(item)">{{item.title}}</h5>
+                                                <p class="card-text">{{item.desc}}</p>
+                                        </div>
+                                  
+                                  
+                                </div>
+                              </div>
+                </div>
+        </ng-container>
+       
+    </div>
+
+</div> <!-- container-fluid -->

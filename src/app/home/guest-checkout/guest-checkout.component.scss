@@ -1,0 +1,145 @@
+
+
+@font-face {font-family: 'a6x12mun';src: url('https://www.licenseplates.tv/fonts/truetype/ag_newgermandecalnew.ttf');}
+
+@font-face {font-family: 'a6x12mun';src: url('../../../assets/fonts/ag_newgermandecalnew.ttf');}
+
+.a6x12mun{
+    font-family:'a6x12mun';
+    src: url('../../../assets/fonts/ag_newgermandecalnew.ttf');
+}
+
+// .form-control {
+//     font-family: 'a6x12mun';
+// }
+
+.text-danger {
+    color: #d9232e;
+}
+
+h6.txt-badge {
+color: #fff;
+padding: 3px;
+margin-bottom: 2px;
+}
+
+h3,h4,h5,h6 {
+    text-transform: none;
+}
+
+h4 {
+    margin-bottom: 3px;
+}
+
+.form-control {
+    background-color: #f3f4f5;
+    border-top: 2px solid #d3d2d2;
+    border: 1px solid #e4e6e8;
+    height: 42px;
+}
+
+.form-group > .text-danger {
+    padding: .5em;
+}
+
+.col-xs-1 label {
+    padding-left: 0px;
+}
+
+.col-xs-11 {
+    padding-right: 0px;
+}
+
+ .row {
+    margin-bottom: 10px;
+}
+
+#product h6 {
+    margin-bottom: 5px;
+}
+
+.free-ship-tag {
+    border: 2px solid #000;
+    color: #000;
+    padding: .4em;
+}
+
+#checkout-box table th {
+    border-bottom: 3px solid #909090;
+    // color: #000;
+}
+
+.border-bot {
+    border-bottom: 3px solid #909090;
+}
+
+#checkout-box table tr {
+    // border-bottom: 1px solid #000;
+    color: #000;
+}
+
+#checkout-box {
+    border-top: 3px solid #909090;
+    border-bottom: 3px solid #909090;
+}
+
+.no-pad {
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.no-mar {
+    margin-left: 0px;
+    margin-right: 0px
+}
+
+#credit-card .form-check {
+    padding-top: 4px;
+    padding-right: 3px;
+    font-size: 15px;
+}
+
+#credit-card .col-sm-6 {
+    margin-top: 6px;
+}
+
+ .order-complete {
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#paypal {
+    margin-top: 2em;
+    width: 100%;
+}
+
+#paypal h6 {
+    padding-top: 4px;
+    padding-right: 3px;
+    font-size: 15px;
+}
+
+#paypal .paypal-btn {
+    cursor: pointer;
+}
+
+#card-details input {
+    margin-bottom: .5em;
+}
+
+#card-details .whats {
+    position: relative;
+    top: 23px;    
+    left: -18px;
+}
+
+.paypal-button.paypal-button-color-gold {
+    background: url("../../../assets/images/paypal.gif");
+    color: #111;
+    background-image: url("../../../assets/images/paypal.gif");
+
+}
+
+
+

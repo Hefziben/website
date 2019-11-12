@@ -1,0 +1,341 @@
+
+<!-- <head>
+    <link rel="stylesheet" type="text/css" href="https://www.licenseplates.tv/fonts/truetype/ag_newgermandecalnew.ttf" />      
+</head> -->
+
+<div class="container-fluid">
+
+  <!-- <div *ngIf="subCategories" class="row" style="margin-bottom: 0px">
+      <div class="col-sm-12 mt-2 text-center card_plate">
+          <h5 style="margin-top: 2px">Displaying <strong>1</strong> to <strong>{{subCategories.length}}</strong> (of <strong>{{subCategories.length}}</strong> products)</h5>
+      </div>
+  </div>  -->
+
+  <div class="row">
+
+      <ng-container *ngIf="!products">
+              <div class="col-sm-4 text-center">
+                  <img width="14%" src="/assets/images/loader.svg" alt="">
+                      <h6>loading...</h6>
+                  </div>
+      </ng-container>
+      
+      <ng-container *ngIf="products">
+              <div *ngFor="let item of products" class="col-sm-4">
+
+                 <div class="well text-center">
+                 <h5 style="font-size: 20px;width: 100%;margin: auto;color: #000" class="card-title">{{item.products_name}}</h5>
+            <h4 class="text-danger"> <span class="old_price">${{item.products_price | number : '1.2-2'}}&nbsp;</span> &nbsp;${{item.products_price_sorter | number : '1.2-2'}}&nbsp; Save: 15% off</h4>
+                        <!-- <a href=""><img src="assets/images/buy.png" alt="">  </a> -->
+                </div>
+
+                      <div class="card text-center">
+        <img class="card-img-top" width="90%" src="{{imgUrl}}{{item.products_image}}" alt="IMG_PRODUCT"> <br>
+        <img *ngIf="item.xPos1 > 0" class="card-img-top" width="90%" src="https://www.licenseplates.tv/lpgenI.php?productId={{item.products_model}}&text1={{Urltext}}&text2={{Urltext2}}&font={{font}}" alt="IMG_PRODUCT">
+        <h5 class="text-danger" style="padding: 1em;">Please enter your <strong>CUSTOM LETTERS/NUMBERS</strong> into the box <strong>BELOW</strong></h5>
+        <!-- <input type="text" [(ngModel)]="text" #ctrl="ngModel"> -->
+        <div *ngIf="item.xPos1 > 0" class="form-group">
+          <input type="text" [(ngModel)]="text" (input)="changeTxt()" (click)="selectInput1()" #ctrl="ngModel" class="form-control a6x12mun" id="exampleInputText" aria-describedby="textHelp" placeholder="">
+        </div>
+        <div *ngIf="item.xPos2 > 0" class="form-group">
+            <input type="text" [(ngModel)]="text2" #ctrl="ngModel" (input)="changeTxt()" (click)="selectInput2()" class="form-control a6x12mun" id="exampleInputText" aria-describedby="textHelp" placeholder="">
+          </div>
+
+          <div *ngIf="item.font_choose > 0" class="form-group">
+            <h4 class="text-danger"> <label for="exampleFormControlSelect1">Select Font</label> </h4>
+            <select *ngIf="item.products_custom == 1" class="form-control" id="exampleFormControlSelect1">
+              <option *ngFor="let selctItem of dropDown1" (click)="setFont(selctItem)">{{selctItem.text}}</option>
+              <!-- <option>Font 2</option> -->
+            </select>
+            <select *ngIf="item.products_custom == 2" class="form-control" id="exampleFormControlSelect1">
+              <option *ngFor="let selctItem of dropDown2">{{selctItem.text}}</option>
+              <!-- <option>Font 2</option> -->
+            </select>
+          </div>
+
+          <div *ngIf="products[0].edecal == 'Y'" id="customizeblock" style="clear:both">
+            <div class="decalsblock" style="clear:both">
+
+
+              <div class="row" style="width: 90%;margin: auto;">
+                <div class="col-sm-12 text-center">
+
+                   <!-- <div class="decal-date-info">CLICK TO SELECT SPECIAL CHARACTER (some characters may show differently in text box)</div> -->
+        <div style="float:left;border:1px solid black;" (click)="addVal('!')" class="symbolclick a6x12mun" rel="!">
+            !</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('@')" class="symbolclick a6x12mun" rel="@">
+            @</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('#')" class="symbolclick a6x12mun" rel="#">
+            #</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('$')" class="symbolclick a6x12mun" rel="$">
+            $</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('&amp;')" class="symbolclick a6x12mun" rel="&amp;">
+            &amp;</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('?')" class="symbolclick a6x12mun" rel="?">
+            ?</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('\'')" class="symbolclick a6x12mun" rel="'">
+            '</div>
+          <div class="decal-date-info"></div><div style="float:left;border:1px solid black;" (click)="addVal('-')" class="symbolclick a6x12mun" rel="-">
+            -</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('=')" class="symbolclick a6x12mun" rel="=">
+            =</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('+')" class="symbolclick a6x12mun" rel="+">
+            +</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('*')" class="symbolclick a6x12mun" rel="*">
+            *</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('/')" class="symbolclick a6x12mun" rel="/">
+            /</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('\\')" class="symbolclick a6x12mun" rel="\">
+            \</div>
+          <div style="float:left;border:1px solid black;" (click)="addVal('&lt;')" class="symbolclick a6x12mun" rel="<">
+            &lt;</div>
+          <div class="decal-date-info"></div>
+
+           <!-- <br><input type="hidden" name="textclicked" id="textclicked" value="1">
+             <div class="decal-date-info">
+        SELECT DIFFERENT DATE DECALS BY CLICKING ON DESIRED CHOICE BELOW, STATE DECAL WILL BE THAT OF THE PLATE THAT WAS CHOSEN		 
+        </div> -->
+        <div id="decals">
+
+            <ng-container *ngIf="products[0].edecal == 'Y'">
+                <div class="decalslabel">Emission Test Decal</div>
+                       <div id="decal4" class="symbolclick customizeproductimage imgselector"  [ngClass]="selectedDecal == 1 ? 'active' : ''" (click)="changeimg('%3A',1);" rel=":">
+                         <img src="assets/images/decals/decal4.png">
+                        <div class="largedecal"><img src="assets/images/decals/decal4.png"></div>
+                       </div>
+                       <div id="decal5" class="symbolclick customizeproductimage imgselector " [ngClass]="selectedDecal == 2 ? 'active' : ''" (click)="changeimg('%3A',2);" rel=":">
+                         <img src="assets/images/decals/decal5.png">
+                        <div class="largedecal"><img src="assets/images/decals/decal5.png"></div>
+                       </div>
+                       <div id="decal1" class="symbolclick customizeproductimage imgselector " [ngClass]="selectedDecal == 3 ? 'active' : ''" (click)="changeimg('%3A',3);" rel=":">
+                         <img src="assets/images/decals/decal1.png">
+                        <div class="largedecal"><img src="assets/images/decals/decal1.png"></div>
+                       </div>
+                       <div id="decal2" class="symbolclick customizeproductimage imgselector" [ngClass]="selectedDecal == 4 ? 'active' : ''" (click)="changeimg('%3A',4);" rel=":">
+                         <img src="assets/images/decals/decal2.png">
+                        <div class="largedecal"><img src="assets/images/decals/decal2.png"></div>
+                       </div>
+                       <div id="decal11" class="symbolclick customizeproductimage imgselector " [ngClass]="selectedDecal == 5 ? 'active' : ''" (click)="changeimg('%3A',5);" rel=":">
+                         <img src="assets/images/decals/decal11.png">
+                        <div class="largedecal"><img src="assets/images/decals/decal11.png"></div>
+                       </div> <br>
+            </ng-container>
+               
+            <ng-container *ngIf="products[0].saftydecal == 'Y'">
+                <div class="decalslabel">Safety Test Decal</div>
+                 <div id="decal9" class="symbolclick customizeproductimage imgselector " (click)="changeimg('%3B');" rel=";">
+                   <img src="assets/images/decals/decal9.png">
+                  <div class="largedecal"><img src="assets/images/decals/decal9.png"></div>
+                 </div>
+                 <div id="decal10" class="symbolclick customizeproductimage imgselector " (click)="changeimg('%3B');" rel=";">
+                   <img src="assets/images/decals/decal10.png">
+                  <div class="largedecal"><img src="assets/images/decals/decal10.png"></div>
+                 </div>
+                 <div id="decal6" class="symbolclick customizeproductimage imgselector " (click)="changeimg('%3B');" rel=";">
+                   <img src="assets/images/decals/decal6.png">
+                  <div class="largedecal"><img src="assets/images/decals/decal6.png"></div>
+                 </div>
+                 <div id="decal7" class="symbolclick customizeproductimage imgselector " (click)="changeimg('%3B');" rel=";">
+                   <img src="assets/images/decals/decal7.png">
+                  <div class="largedecal"><img src="assets/images/decals/decal7.png"></div>
+                 </div>
+                 <div id="decal12" class="symbolclick customizeproductimage imgselector " (click)="changeimg('%3B');" rel=";">
+                   <img src="assets/images/decals/decal12.png">
+                  <div class="largedecal"><img src="assets/images/decals/decal12.png"></div>
+                 </div> <br>
+            </ng-container>
+            
+            <ng-container *ngIf="products[0]?.statedecal != null">
+                <div class="decalslabel col-sm-12"><p style="width: 100%;margin: auto">State Decal</p></div> <br>
+                <div id="d" class="symbolclick customizeproductimage imgselector " (click)="changeimg('%3E')" rel=">">
+                   <img src="https://www.licenseplates.tv/decals/{{stateDecal[0]}}">
+                  <div class="largedecal"><img src="https://www.licenseplates.tv/decals/{{products[0].statedecal}}"></div>
+                 </div>
+            </ng-container>
+                 
+                 
+              </div>
+          <div id="decalsyear">
+          <div class="decalslabel">&nbsp;</div>
+                 <!--<div id="adecal3" class="customizeproductimage imgselector  selected" (click)="changeimg('decal3');" >
+                   2013
+                 </div>//-->
+                 <div id="adecal4" class="customizeproductimage imgselector " [ngClass]="selectedDecal == 1 ? 'active' : ''" (click)="changeimg('',1);">
+                   2014
+                 </div>
+                 <div id="adecal5" class="customizeproductimage imgselector " [ngClass]="selectedDecal == 2 ? 'active' : ''" (click)="changeimg('',2);">
+                   2015
+                 </div>
+                 <div id="adecal1" class="customizeproductimage imgselector " [ngClass]="selectedDecal == 3 ? 'active' : ''" (click)="changeimg('',3);">
+                   2016
+                 </div>
+                 <div id="adecal2" class="customizeproductimage imgselector " [ngClass]="selectedDecal == 4 ? 'active' : ''" (click)="changeimg('',4);">
+                   2017
+                 </div>
+                 <div id="adecal11" class="customizeproductimage imgselector " [ngClass]="selectedDecal == 5 ? 'active' : ''" (click)="changeimg('',5);">
+                   2018
+                 </div>
+              </div> <br style="margin-bottom: 1em;">
+
+                </div>
+              </div>
+        
+       
+        
+       
+        
+        
+            <style type="text/css">
+              #decals,#decalsyear {clear: both !important;display: block !important;float: none !important;width: 100% !important;padding: 10px;}
+              #decals .customizeproductimage , #decalsyear .customizeproductimage {float: left;margin-right: 10px;text-align: center;width: 60px;}
+              #decals .customizeproductimage.imgselector.active , #decalsyear .customizeproductimage.imgselector.active{ border:1px solid #090;}
+              .largedecal{background-color: rgb(255, 255, 255); position: absolute; display: none; border:1px solid #dc232f;}
+              #decals .customizeproductimage.imgselector:hover .largedecal{display:block;}
+            </style>
+                <div class="clearBoth"></div>
+                        </div>
+               
+                 
+              
+                  </div>
+
+        <div class="card-body">
+            <!-- <a class="shop_now_btn" href="javascript:void(0)"><img src="assets/images/shop_now_button.png" (click)="subCat(item)" width="250" alt="Shop Now"></a> -->
+            <!-- <h5 style="font-size: 18px;width: 98%;margin: auto;color: #000" class="card-title">{{item.products_name}}</h5> -->
+
+            <!-- <h4 class="text-danger">$100.00 $80.00 Save: 15% off</h4> -->
+                <!-- <div class="well">
+            <h3 class="text-danger"> <span class="old_price">${{item.products_price | number : '1.2-2'}}&nbsp;</span> &nbsp;${{item.products_price_sorter | number : '1.2-2'}}&nbsp; Save: 15% off</h3>
+                        <a href=""><img src="assets/images/buy.png" alt="">  </a>
+                </div> -->
+
+                <div class="row">
+                    <div class="col-sm-12 text-center" style="position: relative; top: 50px">
+                        <img width="100%" style="padding: 0 1em 0 1em;position: relative;top: -22px" src="https://www.licenseplates.tv/images/legends/legend{{products[0].font1}}.png" alt="">
+                      </div> <br>
+                </div>
+
+
+                <ng-container *ngIf="plateHolders.length > 0">
+                  <div class="row mb-4">
+                    <div class="col-xs-12 text-center">
+                        <h6>Universal Plate Holder</h6>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                      <img src="assets/images/universalplateholder.gif" alt="">
+                    </div>
+  
+                    <div class="col-xs-12 text-center" style="padding-top: 1em;">
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Please choose:</label>
+                        <select style="font-family: 'Roboto';" class="form-control" [(ngModel)]="plateType"   #ctrl="ngModel" id="exampleFormControlSelect1">
+                          <option select>--NONE--</option>
+                          <option *ngFor="let plate of plateHolders" (click)="selectPlate(plate)">
+                            {{plate.products_options_values_name}}&nbsp;( ${{plate.options_values_price | number : '1.2-2'}} )
+                          </option>
+                          <!-- <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option> -->
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+
+
+           <div class="row"> <br>
+             
+             <div style="padding-left: 24px" class="col-xs-6 col-sm-6 text-center">
+              <span class="tile_div">
+                <button (click)="decriment()" class="btn"><i class="fa fa-minus" aria-hidden="true"></i></button>&nbsp;
+               &nbsp;<h5 class="txtnum">{{num}}</h5>&nbsp;
+               <button (click)="incriment()" class="btn"><i class="fa fa-plus" aria-hidden="true"></i></button>&nbsp;
+              </span>               
+             </div>
+             <div (click)="updateCart()" class="col-xs-6 col-sm-6 text-right">
+               <!-- <img style="padding-right: 16px;" src="assets/images/buy-now.png" alt=""> -->
+               <button class="btn btn-success btn-lg">Update Cart&nbsp; <i style="color: #FFF;" aria-hidden="true" class="fa fa-shopping-cart"></i></button>
+             </div>
+
+             
+
+           </div>     
+          
+          
+        </div>
+      </div>
+              </div>
+      </ng-container>
+     
+  </div>
+
+  <div *ngIf="products == 1" class="row">
+    <div id="prod-details" class="col-sm-12 text-center">
+
+       
+            <ul class="list-group text-left" style="padding: 0 1.6em 0 1.6em">
+                <ng-container *ngFor="let item of products">
+                <li (click)="toggle('item1')" class="list-group-item d-flex justify-content-between align-items-center">
+                  Description
+                  <span *ngIf="itemOn != 'item1'" class="badge badge-primary badge-pill"><i class="fa fa-plus" aria-hidden="true"></i></span> 
+                  <span *ngIf="itemOn == 'item1'" class="badge badge-primary badge-pill"><i class="fa fa-minus" aria-hidden="true"></i></span> 
+                  <ng-container *ngIf="itemOn == 'item1'">
+                      <hr>
+                  <p>{{item.products_description}}</p>
+                  </ng-container>
+                  
+                </li>
+                <li (click)="toggle('item2')" class="list-group-item d-flex justify-content-between align-items-center">
+                  Additional Information
+                  <span *ngIf="itemOn != 'item2'" class="badge badge-primary badge-pill"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                  <span *ngIf="itemOn == 'item2'" class="badge badge-primary badge-pill"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                  <ng-container *ngIf="itemOn == 'item2'">
+                      <hr>
+                  <p>{{item.products_description}}</p>
+                  </ng-container>
+                </li>
+                <li (click)="toggle('item3')" class="list-group-item d-flex justify-content-between align-items-center">
+                  Help & Info
+                  <span *ngIf="itemOn != 'item3'" class="badge badge-primary badge-pill"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                  <span *ngIf="itemOn == 'item3'" class="badge badge-primary badge-pill"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                  <ng-container *ngIf="itemOn == 'item3'">
+                      <hr>
+                  <p>{{item.products_description}}</p>
+                  </ng-container>
+                </li>
+                <li (click)="toggle('item4')" class="list-group-item d-flex justify-content-between align-items-center">
+                    Customer Service
+                    <span *ngIf="itemOn != 'item4'" class="badge badge-primary badge-pill"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    <span *ngIf="itemOn == 'item4'" class="badge badge-primary badge-pill"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                    <ng-container *ngIf="itemOn == 'item4'">
+                        <hr>
+                    <p>{{item.products_description}}</p>
+                    </ng-container>
+                  </li>
+                  <li (click)="toggle('item5')" class="list-group-item d-flex justify-content-between align-items-center">
+                      Our Company
+                      <span *ngIf="itemOn != 'item5'" class="badge badge-primary badge-pill"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                      <span *ngIf="itemOn == 'item5'" class="badge badge-primary badge-pill"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                      <ng-container *ngIf="itemOn == 'item5'">
+                          <hr>
+                      <p>{{item.products_description}}</p>
+                      </ng-container>
+                    </li>
+              </ng-container>
+              </ul>
+       
+    
+      
+    </div>
+  </div>
+
+</div> <!-- container-fluid -->
+
+<style type="text/css">
+  @font-face {font-family: 'aEECDMBW';src: url('{{fontUrl}}');}
+  .aEECDMBW{font-family:'aEECDMBW';}
+  </style>
+
+
+

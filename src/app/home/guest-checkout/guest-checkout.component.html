@@ -640,14 +640,24 @@
         <img src="assets/images/paypal-small.gif" alt="">
         <h3> <strong>$ {{getTotalAmount()}}</strong> </h3>
         <!-- <div id="paypal-checkout-btn"></div> -->
-        <div  id="paypalPay"></div>
+        <form id="payment-form" style="padding: 2%">
+          <div id="dropin-container"></div>
+       <div>
+                <button (click)="paydata();" id="donate"  ion-button round outline type="submit" style="background-color: #d82140;color:#fff;width: 100%;margin-top:8%;margin-bottom: 11%;text-transform: uppercase;">Confirm</button>
+             </div>
+      </form>
+      <form id="nonce-form">
+        <div id="dropin-container"></div>
+      </form>
         
         <button (click)="goBack()" class="btn btn-danger">Go back</button>
+      
     </div>
     </ng-container>
    
     
   </div>
+
 
 </div>
 

@@ -11,7 +11,8 @@ import { async } from 'q';
 import { renderComponent } from '@angular/core/src/render3';
 
 declare let paypal;
-
+import * as dropin from 'braintree-web-drop-in';
+import * as $ from 'jquery';
 declare let Accept: any;
 
 @Component({
@@ -26,6 +27,8 @@ export class GuestCheckoutComponent implements OnInit, AfterViewChecked {
     price:10.00,
     description: 'leather coach'    
   }
+  public BRAINTREE_TOKEN;
+  payAmount = 10;
   paidFor = false;
   model: any = {};
   shipping: any = {};
@@ -155,8 +158,11 @@ export class GuestCheckoutComponent implements OnInit, AfterViewChecked {
   verifying: boolean;
 
   constructor(private router: Router,
+  
     public _productService: productService,
-    private _http: HttpClient) { }
+    private _http: HttpClient,
+    
+    ) { }
 
   ngOnInit() {
     this.getCartitems();
@@ -405,6 +411,8 @@ paypalCredit(){
     // console.log(this.same);
     // console.log('invalid');
   }
+////customer payment config
+
 
   ngAfterViewChecked(): void {
     if (!this.addScript) {
@@ -701,6 +709,70 @@ paypalCredit(){
 
   } // paymentSuccess
 
+  paydata(){
+    this.BRAINTREE_TOKEN = 'sandbox_vpthqzzr_xwt69yw628qjyz9m';
 
+	  // let loading = this.loadingCtrl.create({content:'Processing... please wait'});
+		// 		loading.present();
+		// 		setTimeout(() => {
+		// 		  loading.dismiss();
+		// 		},3000);
 
+	  console.log("-----paydata()--------call");
+	  $('#confirmData').hide();
+	  $('#confirmmsg').hide();
+    $('#confirmdonation').show();
+    $('#Authenticating').hide();
+
+  
+  
+  $("#donate").html("Pay");
+  var self = this;
+  var form = document.querySelector('#nonce-form');
+  var hiddenNonceInput = document.querySelector('#my-nonce-input');
+  var form = document.querySelector('#payment-form');
+      dropin.create({
+        authorization: this.BRAINTREE_TOKEN,
+        container: '#dropin-container',
+        //  paypal: {
+        //     flow: 'checkout',
+        //     singleUse: true,
+        //     amount: this.payAmount,
+        //     currency: '$',
+        //   }
+      }, function (err, dropinInstance) {
+           $('#shareAmount').hide();
+		   
+		   if (err) {
+		     console.log("err 1 : "+err);
+		     console.error(err);
+		     return;
+		   }
+        
+          form.addEventListener('submit', function (event) {
+             event.preventDefault();
+
+          dropinInstance.requestPaymentMethod(function (err, payload) {
+             if (err) {
+              console.log("err 2 : "+err);
+              return;
+             }
+         	  console.log("-----paydata() payload--------");
+		        console.log("payload 2 : "+JSON.stringify(payload));
+			      console.log("payload.nonce : "+payload.nonce);
+            
+            if(payload.nonce !==undefined){
+               this.paymentDetailsSave(payload.nonce);  
+            }
+            $("#donate").hide();
+            $('#confirmdonation').hide();
+            $('#Authenticating').show();
+           
+          });
+        });
+      });
+     }
+     paymentDetailsSave(payloadNonce){
+      console.log('payloadNonce :' + payloadNonce);
+    }
 }

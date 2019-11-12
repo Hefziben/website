@@ -33,6 +33,10 @@ import { SignupComponent } from './signup/signup.component';
 import { SignupModule } from './signup/signup.module';
 import { LoginModule } from './login/login.module';
 
+//host to firebase
+import { environment } from '../environments/environment.prod';
+import { AngularFireModule } from '@angular/fire';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,7 @@ import { LoginModule } from './login/login.module';
     SidebarComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     FormsModule,
     HttpModule,
